@@ -1,22 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <ProductList></ProductList>
+    <h1>Dorfladen</h1>
+    <button><router-link to="/">Home</router-link>
+    </button>
+    <button>
+      <router-link to="/cart-detail">Korb: {{this.total}} </router-link>
+    </button>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import ProductList from "@/components/ProductList";
+import Transfer from './mixins/transfer.ts'
+import Vue from "vue";
 
-export default {
-  name: 'App',
-  components: {
-    ProductList,
-    HelloWorld
+export default Vue.extend({
+  mixins: [Transfer],
+  name: "ProductList",
+  data() {
+    return {
+      total: 0
+    }
+  },
+  async mounted() {
+    this.total = await Transfer.methods.sumCartItems(this.total)
+
   }
-}
+})
 </script>
 
 <style>
@@ -26,6 +36,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+a {
+  text-decoration: none;
+  color:black;
+}
+
+button {
+  margin: 30px;
+}
+
 </style>

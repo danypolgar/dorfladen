@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Session} from "@nestjs/common";
+import { Controller, Get, Param} from "@nestjs/common";
 import {ProductObject} from "../../domain/usecase/product/product.object";
 import {ProductDto} from "../dto/product.dto";
 
@@ -9,8 +9,7 @@ export class ProductController {
     }
 
     @Get('/getProducts')
-    public getProducts(@Session() session: Record<string, any>): ProductDto[] {
-        session.visits ? session.visits++ : session.visits = 1;
+    public async getProducts(): Promise<ProductDto[]> {
         return this.productObject.products
     }
 
