@@ -15,14 +15,22 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Transfer from '../mixins/transfer'
+import Transfer from '../mixins/transfer';
+declare interface ProductDto {
+  id: string;
+  productName: string;
+  specialOffer: number;
+  normalPrice: number;
+  imageName: string;
+  description: string;
+}
 
 export default Vue.extend({
   mixins: [Transfer],
   name: "ProductList",
   data() {
     return {
-      products: {},
+      products: {} as ProductDto[],
     }
   },
   async mounted() {

@@ -23,16 +23,29 @@
 
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
-import Transfer from '../mixins/transfer.ts'
+import Transfer from '@/mixins/transfer.ts';
+declare interface ProductDto {
+  id: string;
+  productName: string;
+  specialOffer: number;
+  normalPrice: number;
+  imageName: string;
+  description: string;
+}
+
+declare interface ItemDto {
+  product: ProductDto;
+  count: number;
+}
 
 export default Vue.extend({
   mixins: [Transfer],
   name: "CartItem",
   data() {
     return {
-      items: {},
+      items: {} as ItemDto[],
       total: 0,
     }
   },
@@ -43,7 +56,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    async changeCount(id, direction){
+    async changeCount(id: string, direction: string){
       await Transfer.methods.changeProductCount(id, direction);
       location.reload();
     }

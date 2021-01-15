@@ -9,9 +9,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
-import Transfer from '../mixins/transfer.ts'
+import Transfer from '@/mixins/transfer.ts'
 
 export default Vue.extend({
   props: ['productId'],

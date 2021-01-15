@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import Transfer from '../mixins/transfer.ts'
+import Transfer from '@/mixins/transfer.ts'
 
 export default {
   mixins: [Transfer],

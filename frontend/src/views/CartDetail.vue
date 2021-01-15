@@ -17,10 +17,10 @@
 </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
-import CartItem from "@/components/CartItem";
-import Transfer from '../mixins/transfer.ts'
+import CartItem from "@/components/CartItem.vue";
+import Transfer from '@/mixins/transfer.ts'
 
 export default Vue.extend({
   mixins: [Transfer],
