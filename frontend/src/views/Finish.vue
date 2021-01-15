@@ -5,9 +5,11 @@
 </template>
 
 <script>
+
 export default {
-  name: "Finish"
-}
+  name: "Finish",
+  }
+
 </script>
 
 <style scoped>

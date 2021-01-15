@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, Post, Put, Session} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, Post, Put, Session} from "@nestjs/common";
 import {CartObject} from "../../domain/usecase/cart/cart.object";
 import {ProductObject} from "../../domain/usecase/product/product.object";
 import {ProductDto} from "../dto/product.dto";
@@ -103,8 +103,20 @@ export class CartController {
             }
         }
 
+    }
 
+    @Delete('/deleteCart')
+    public async deleteCart(@Session() session: Record<string, any>): Promise<void> {
+        let cart: CartDto;
+        for (const tempCart of this.cartObject.carts) {
+            if (tempCart.sessionId == session.id) {
+                cart = tempCart;
+            }
+        }
 
+        if(cart) {
+           this.cartObject.carts.splice(this.cartObject.carts.indexOf(cart),1 );
+        }
 
     }
 

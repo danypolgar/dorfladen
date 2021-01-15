@@ -11,8 +11,8 @@
     </thead>
     <CartItem></CartItem>
   </table>
-  <button>
-    <router-link to="/checkout">Zum Checkout</router-link>
+  <button :disabled="this.total === 0">
+    <router-link :disabled="this.total !== 0" :event="this.total !== 0 ? 'click' :''" to="/checkout">Zum Checkout</router-link>
   </button>
 </div>
 </template>
@@ -20,12 +20,23 @@
 <script>
 import Vue from "vue";
 import CartItem from "@/components/CartItem";
+import Transfer from '../mixins/transfer.ts'
 
 export default Vue.extend({
+  mixins: [Transfer],
   name: "CartDetail",
   components: {
     CartItem
+  },
+  data() {
+    return{
+      total: 0
+    }
+  },
+  async mounted() {
+    this.total = await Transfer.methods.sumCartItems(this.total)
   }
+
 })
 </script>
 

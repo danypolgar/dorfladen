@@ -21,6 +21,9 @@ export default {
         async changeProductCount(id: string, direction: string) {
             await axios.put('http://localhost:3000/api/cart/updateProduct', {id: id, direction: direction}, { withCredentials: true })
         },
+        async deleteCart() {
+          await axios.delete('http://localhost:3000/api/cart/deleteCart', { withCredentials: true });
+        },
         async sumCartItems(total: number) {
 
             let items = await this.getCartProducts();
