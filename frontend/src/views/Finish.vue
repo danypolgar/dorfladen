@@ -6,9 +6,19 @@
 
 <script>
 
-export default {
+import Vue from "vue";
+
+export default Vue.extend({
   name: "Finish",
+  mounted() {
+    if (localStorage.getItem('reloaded')) {
+      localStorage.removeItem('reloaded');
+    } else {
+      localStorage.setItem('reloaded', '1');
+      location.reload();
+    }
   }
+  })
 
 </script>
 
